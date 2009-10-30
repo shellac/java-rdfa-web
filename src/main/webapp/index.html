@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>RDFa Parser service</title>
+	
+</head>
+
+<body>
+	<h1>RDFa Parser</h1>
+	<p>This is just a simple use of <a href="http://www.rootdev.net/maven/projects/java-rdfa/">java-rdfa</a>.</p>
+	<hr/>
+	<h2>How to use</h2>
+	<h3>Simple</h3>
+	<p><code>extract?uri=<i>target</i>[&type=html|xhtml]</code></p>
+	<h3>Simpler</h3>
+	<form action="extract" method="GET">
+		<p>URI: <input type="text" name="uri"/></p>
+		<p>Type: xhtml <input type="radio" name="type" value="xhtml" checked="checked"/>
+			html <input type="radio" name="type" value="html"/></p>
+		<p><input type="submit" value="parse"/></p>
+	</form>
+
+</body>
+</html>

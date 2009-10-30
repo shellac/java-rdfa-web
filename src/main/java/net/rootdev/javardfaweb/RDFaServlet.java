@@ -7,6 +7,7 @@ package net.rootdev.javardfaweb;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import net.rootdev.javardfa.NTripleSink;
 import net.rootdev.javardfa.ParserFactory;
 import net.rootdev.javardfa.ParserFactory.Format;
 import net.rootdev.javardfa.StatementSink;
+import net.rootdev.javardfa.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -39,21 +41,30 @@ public class RDFaServlet extends HttpServlet {
     throws ServletException, IOException {
         String target = request.getParameter("uri");
         if (target == null || "".equals(target)) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "I need something to parse");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "I need something to parse (try setting 'uri' param)");
             return;
         }
         String type = request.getParameter("type");
 
-        Format format = Format.lookup(type);
+        Format format = (type == null) ? Format.XHTML : Format.lookup(type);
         response.setCharacterEncoding("US-ASCII");
         response.setContentType("text/plain"); // yeuch
-        StatementSink sink = new NTripleSink(response.getOutputStream());
+        // yeuch
+        ServletOutputStream os = response.getOutputStream();
+        os.print("# Produced by ");
+        os.println(Version.get().toString());
+        os.print("# From: <");
+        os.print(target);
+        os.print("> (");
+        os.print(format.toString());
+        os.println(")");
+        StatementSink sink = new NTripleSink(os);
         try {
             XMLReader parser = ParserFactory.createReaderForFormat(sink, format);
             parser.parse(target);
         } catch (SAXException ex) {
             log.error("SAX explosion (target: " + target + " format: " + format + ")" , ex);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "SAXplosion");
             return;
         }
     } 

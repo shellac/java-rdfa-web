@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.rootdev.javardfa.NTripleSink;
 import net.rootdev.javardfa.ParserFactory;
 import net.rootdev.javardfa.ParserFactory.Format;
+import net.rootdev.javardfa.RDFXMLSink;
 import net.rootdev.javardfa.StatementSink;
 import net.rootdev.javardfa.Version;
 import org.slf4j.Logger;
@@ -47,18 +48,19 @@ public class RDFaServlet extends HttpServlet {
         String type = request.getParameter("type");
 
         Format format = (type == null) ? Format.XHTML : Format.lookup(type);
-        response.setCharacterEncoding("US-ASCII");
-        response.setContentType("text/plain"); // yeuch
-        // yeuch
+        //response.setCharacterEncoding("US-ASCII");
+        response.setCharacterEncoding("UTF-8");
+        //response.setContentType("text/plain"); // yeuch
+        response.setContentType("application/rdf+xml");
         ServletOutputStream os = response.getOutputStream();
-        os.print("# Produced by ");
+        /*os.print("# Produced by ");
         os.println(Version.get().toString());
         os.print("# From: <");
         os.print(target);
         os.print("> (");
         os.print(format.toString());
-        os.println(")");
-        StatementSink sink = new NTripleSink(os);
+        os.println(")");*/
+        StatementSink sink = new RDFXMLSink(os);//new NTripleSink(os);
         try {
             XMLReader parser = ParserFactory.createReaderForFormat(sink, format);
             parser.parse(target);

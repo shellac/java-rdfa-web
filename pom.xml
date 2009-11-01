@@ -45,6 +45,11 @@
       <version>1.2.0</version>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-server</artifactId>
+      <version>1.0.2</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -69,11 +74,20 @@
     </plugins>
     <finalName>java-rdfa-web</finalName>
   </build>
-    <properties>
+  <repositories>
+    <repository>
+      <url>http://download.java.net/maven/2</url>
+      <id>restlib</id>
+      <layout>default</layout>
+      <name>Repository for library Library[restlib]</name>
+    </repository>
+  </repositories>
+  <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netbeans.hint.deploy.server>AppEngine</netbeans.hint.deploy.server>
     </properties>
 </project>
+
 
 
 

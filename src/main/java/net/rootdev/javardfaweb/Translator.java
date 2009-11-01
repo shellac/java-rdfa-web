@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;

@@ -45,7 +45,7 @@ public class RDFaServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "I need something to parse (try setting 'uri' param)");
             return;
         }
-        String type = request.getParameter("type");
+        String type = request.getParameter("parser");
 
         Format format = (type == null) ? Format.XHTML : Format.lookup(type);
         //response.setCharacterEncoding("US-ASCII");

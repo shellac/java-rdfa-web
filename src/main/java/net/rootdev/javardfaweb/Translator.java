@@ -38,8 +38,8 @@ import org.xml.sax.XMLReader;
 public class Translator {
     private static final Logger log = LoggerFactory.getLogger(Translator.class);
 
-    @Context
-    private UriInfo context;
+    //@Context
+    //private UriInfo context;
     private final String comment;
 
     /** Creates a new instance of Translator */

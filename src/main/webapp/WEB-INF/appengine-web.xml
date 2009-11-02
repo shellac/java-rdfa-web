@@ -3,5 +3,5 @@
 xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
 xsi:schemaLocation='http://kenai.com/projects/nbappengine/downloads/download/schema/appengine-web.xsd appengine-web.xsd'>
     <application>rdf-in-html</application>
-    <version>2</version>
+    <version>1</version>
 </appengine-web-app>

@@ -16,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.StreamingOutput;
 import net.rootdev.javardfa.NTripleSink;
+import net.rootdev.javardfa.Parser;
 import net.rootdev.javardfa.ParserFactory;
 import net.rootdev.javardfa.ParserFactory.Format;
 import net.rootdev.javardfa.RDFXMLSink;
@@ -96,6 +97,8 @@ public class Translator {
     protected void parse(URL url, Format format, StatementSink sink) {
         try {
             XMLReader parser = ParserFactory.createReaderForFormat(sink, format);
+            if (format.equals(Format.HTML)) // htmlparser has a bug
+                ((Parser) parser.getContentHandler()).setBase(url.toString());
             parser.parse(url.toString()); // Ought to change this based on format
         } catch (SAXException ex) {
             throw new WebApplicationException(ex);

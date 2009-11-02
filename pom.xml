@@ -4,7 +4,7 @@
   <groupId>net.rootdev</groupId>
   <artifactId>java-rdfa-web</artifactId>
   <packaging>war</packaging>
-  <version>0.1.1</version>
+  <version>0.2-SNAPSHOT</version>
   <name>java-rdfa-web JEE5 Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>

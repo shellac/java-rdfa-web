@@ -132,7 +132,7 @@ public class Translator {
     }
 
     protected void parse(URI url, Format format, StatementSink sink) {
-        if (!url.getScheme().equals("http")) throw new RuntimeException("I only do http");
+        if (!"http".equals(url.getScheme())) throw new RuntimeException("I only do http");
         InputSource in = new InputSource(url.toString());
         in.setEncoding("utf-8");
         parse(in, format, sink);

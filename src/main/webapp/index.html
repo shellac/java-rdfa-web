@@ -1,28 +1,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>RDFa Parser service</title>
-	
-</head>
+        <title>RDFa Parser service</title>
 
-<body>
-	<h1>RDFa Parser</h1>
-	<p>This is just a simple use of <a href="http://www.rootdev.net/maven/projects/java-rdfa/">java-rdfa</a>.</p>
-	<hr/>
-	<h2>How to use</h2>
-	<h3>Simple</h3>
-	<p><code>translate?uri=<i>target</i>[&parser=html|xhtml]</code></p>
-	<h3>Simpler</h3>
-	<form action="translate" method="GET">
-		<p>URI: <input type="text" name="uri"/></p>
-		<p>Type: xhtml <input type="radio" name="parser" value="XHTML" checked="checked"/>
+        <script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
+
+        <script type="text/javascript">
+
+        </script>
+
+    </head>
+
+    <body>
+        <h1>RDFa Parser</h1>
+        <p>This is just a simple use of <a href="http://www.rootdev.net/maven/projects/java-rdfa/">java-rdfa</a>.</p>
+        <hr/>
+        <h2>How to use</h2>
+        <h3>Simple</h3>
+        <p><code>translate?uri=<i>target</i>[&parser=html|xhtml]</code></p>
+        <h3>Simpler</h3>
+        <form action="translate" method="GET">
+            <p>URI: <input type="text" name="uri"/></p>
+            <p>Type: xhtml <input type="radio" name="parser" value="XHTML" checked="checked"/>
 			html <input type="radio" name="parser" value="HTML"/></p>
-		<p><input type="submit" value="parse"/></p>
-	</form>
+            <p><input type="submit" value="parse"/></p>
+        </form>
+        <h3>Right here</h3>
+        <form>
+            <p>
+                <textarea id="htmltext" cols="40" rows="10"></textarea>
+            </p>
+            <p>Type: xhtml <input type="radio" name="parser" value="XHTML" checked="checked"/>
+			html <input type="radio" name="parser" value="HTML"/></p>
+            <p><input type="submit" onclick="transform('htmltext')"/></p>
+        </form>
+        <hr />
+        <p id="results">
+        </p>
 
-</body>
+
+    </body>
 </html>

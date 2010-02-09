@@ -2,18 +2,10 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>java-rdfa-web</display-name>
     <servlet>
-        <servlet-name>RDFaServlet</servlet-name>
-        <servlet-class>net.rootdev.javardfaweb.RDFaServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ServletAdaptor</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>RDFaServlet</servlet-name>
-        <url-pattern>/extract</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletAdaptor</servlet-name>
         <url-pattern>/translate</url-pattern>
@@ -25,5 +17,5 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
-        </welcome-file-list>
-    </web-app>
+    </welcome-file-list>
+</web-app>

@@ -14,7 +14,7 @@ function translate() {
     var content = $('#htmltext').val();
     var postType = $('input[name=post-type]:checked').val();
     $.ajax({
-        url: 'translate',
+        url: 'r/translate',
         contentType: postType,
         data: content,
         type: 'POST',
@@ -37,11 +37,11 @@ function translate() {
         <hr/>
         <h2>How to use</h2>
         <h3>Simple</h3>
-        <p><code>translate?uri=<i>target</i>[&parser=html|xhtml]</code></p>
+        <p><code>/r/translate?uri=<i>target</i>[&parser=html|xhtml]</code></p>
         <h3>Simpler</h3>
-        <form action="translate" method="GET">
-            <p>URI: <input type="text" name="uri"/></p>
-            <p>Type: xhtml <input type="radio" name="parser" value="XHTML" checked="checked"/>
+        <form action="r/translate" method="GET">
+            <p>URI: <input type="text" name="uri"/>
+            xhtml <input type="radio" name="parser" value="XHTML" checked="checked"/>
 			html <input type="radio" name="parser" value="HTML"/></p>
             <p><input type="submit" value="parse"/></p>
         </form>
@@ -50,7 +50,7 @@ function translate() {
             <p>
                 <textarea id="htmltext" cols="40" rows="10"></textarea>
             </p>
-            <p>Type: xhtml <input type="radio" name="post-type" value="application/xhtml+xml" checked="checked"/>
+            <p>xhtml <input type="radio" name="post-type" value="application/xhtml+xml" checked="checked"/>
 			html <input type="radio" name="post-type" value="text/html"/></p>
             <p><input type="submit"/></p>
         </form>

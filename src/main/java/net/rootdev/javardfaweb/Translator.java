@@ -19,7 +19,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.StreamingOutput;
 import net.rootdev.javardfa.NTripleSink;
-import net.rootdev.javardfa.Parser;
 import net.rootdev.javardfa.ParserFactory;
 import net.rootdev.javardfa.ParserFactory.Format;
 import net.rootdev.javardfa.RDFXMLSink;
@@ -37,7 +36,7 @@ import org.xml.sax.XMLReader;
  * @author pldms
  */
 
-@Path("translate")
+@Path("/")
 public class Translator {
     private static final Logger log = LoggerFactory.getLogger(Translator.class);
 

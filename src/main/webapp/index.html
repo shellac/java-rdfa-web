@@ -14,7 +14,7 @@ function translate() {
     var content = $('#htmltext').val();
     var postType = $('input[name=post-type]:checked').val();
     $.ajax({
-        url: 'r/translate',
+        url: 'translate/',
         contentType: postType,
         data: content,
         type: 'POST',
@@ -29,32 +29,71 @@ function translate() {
 }
         </script>
 
+        <style type="text/css">
+h1, h2, h3 {
+    font-family: sans-serif;
+    color: #666;
+    background-color: #eee;
+    padding: 0.5em;
+}
+
+#results {
+    float: left;
+    border: solid 1pt gray;
+    width: 50%;
+    height: 17em;
+    overflow: auto;
+    margin-left: 2em;
+}
+
+#inline {
+    float: left;
+}
+        </style>
+
     </head>
 
     <body>
-        <h1>RDFa Parser</h1>
-        <p>This is just a simple use of <a href="http://www.rootdev.net/maven/projects/java-rdfa/">java-rdfa</a>.</p>
-        <hr/>
+        <h1>RDFa Online Parser</h1>
+        <p>
+            This is just a simple use of
+            <a href="http://www.rootdev.net/maven/projects/java-rdfa/">java-rdfa</a>.
+            You can use it as a service programmatically, or use the forms below.
+
+        </p>
         <h2>How to use</h2>
-        <h3>Simple</h3>
-        <p><code>/r/translate?uri=<i>target</i>[&parser=html|xhtml]</code></p>
-        <h3>Simpler</h3>
-        <form action="r/translate" method="GET">
+        <p><code>GET /translate/?uri=<i>target</i>[&amp;parser=html|xhtml]</code></p>
+        <form action="translate/" method="GET">
             <p>URI: <input type="text" name="uri"/>
             xhtml <input type="radio" name="parser" value="XHTML" checked="checked"/>
-			html <input type="radio" name="parser" value="HTML"/></p>
-            <p><input type="submit" value="parse"/></p>
+			html <input type="radio" name="parser" value="HTML"/>
+            <input type="submit" value="Parse"/></p>
         </form>
-        <h3>Right here</h3>
-        <form action="javascript:translate('htmltext')">
+        <h2>Enter HTML here</h2>
+        <p><code>POST /translate/</code> (use appropriate mime type for content)</p>
+        <form id="inline" action="javascript:translate('htmltext')">
             <p>
-                <textarea id="htmltext" cols="40" rows="10"></textarea>
+                <textarea id="htmltext" cols="50" rows="14">
+&lt;html
+    xmlns="http://www.w3.org/1999/xhtml/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    &lt;head>&lt;/head>
+    &lt;body>
+        &lt;p about="http://example.com/#me">
+            My name is
+            &lt;span property="foaf:name">Damian&lt;/span>,
+            and you can 
+            &lt;a rel="foaf:mbox" href="mailto:pldms@mac.com">
+            email&lt;/a> me.
+        &lt;/p>
+    &lt;/body>
+&lt;/html>
+                </textarea>
             </p>
             <p>xhtml <input type="radio" name="post-type" value="application/xhtml+xml" checked="checked"/>
-			html <input type="radio" name="post-type" value="text/html"/></p>
-            <p><input type="submit"/></p>
+			html <input type="radio" name="post-type" value="text/html"/>
+            <input type="submit" value="Parse"/></p>
         </form>
-        <hr />
         <pre id="results">
         </pre>
 

@@ -12,7 +12,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletAdaptor</servlet-name>
-        <url-pattern>/r/*</url-pattern>
+        <url-pattern>/translate/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

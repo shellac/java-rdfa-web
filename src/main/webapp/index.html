@@ -41,7 +41,7 @@ h1, h2, h3 {
     float: left;
     border: solid 1pt gray;
     width: 50%;
-    height: 17em;
+    height: 22em;
     overflow: auto;
     margin-left: 2em;
 }
@@ -61,17 +61,21 @@ h1, h2, h3 {
             You can use it as a service programmatically, or use the forms below.
 
         </p>
-        <h2>How to use</h2>
-        <p><code>GET /translate/?uri=<i>target</i>[&amp;parser=html|xhtml]</code></p>
+        <h2>Parsing a web page</h2>
+        <p><code>GET /translate/?uri=<i>webpage-to-parse</i>[&amp;parser=html|xhtml]</code></p>
         <form action="translate/" method="GET">
             <p>URI: <input type="text" name="uri"/>
             xhtml <input type="radio" name="parser" value="XHTML" checked="checked"/>
 			html <input type="radio" name="parser" value="HTML"/>
             <input type="submit" value="Parse"/></p>
         </form>
-        <h2>Enter HTML here</h2>
+        <h2>Parsing content directly</h2>
         <p><code>POST /translate/</code> (use appropriate mime type for content)</p>
         <form id="inline" action="javascript:translate('htmltext')">
+
+            <p>xhtml <input type="radio" name="post-type" value="application/xhtml+xml" checked="checked"/>
+			html <input type="radio" name="post-type" value="text/html"/>
+            <input type="submit" value="Parse"/></p>
             <p>
                 <textarea id="htmltext" cols="50" rows="14">
 &lt;html
@@ -90,13 +94,13 @@ h1, h2, h3 {
 &lt;/html>
                 </textarea>
             </p>
-            <p>xhtml <input type="radio" name="post-type" value="application/xhtml+xml" checked="checked"/>
-			html <input type="radio" name="post-type" value="text/html"/>
-            <input type="submit" value="Parse"/></p>
         </form>
         <pre id="results">
         </pre>
 
+        <address style="clear: left">
+            Updated by <a href="mailto:pldms@mac.com">Damian Steer</a>, 2010. The <a href="http://github.com/shellac/java-rdfa-web">source</a> is available.
+        </address>
 
     </body>
 </html>

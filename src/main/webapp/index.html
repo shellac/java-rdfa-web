@@ -23,6 +23,9 @@ function translate() {
         },
         error: function(request, textStatus, errorThrown) {
             $('#results').text("Error: " + request.status + "\n" + request.responseText);
+        },
+        beforeSend: function(request) {
+            $('#results').text('...Sending...');
         }
     });
     

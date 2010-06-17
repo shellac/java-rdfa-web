@@ -25,6 +25,7 @@ function translate() {
             $('#results').text("Error: " + request.status + "\n" + request.responseText);
         },
         beforeSend: function(request) {
+            request.setRequestHeader("Accept", "text/turtle");
             $('#results').text('...Sending...');
         }
     });
@@ -62,7 +63,10 @@ h1, h2, h3 {
             This is just a simple use of
             <a href="http://www.rootdev.net/maven/projects/java-rdfa/">java-rdfa</a>.
             You can use it as a service programmatically, or use the forms below.
-
+        </p>
+        <p>
+            <em>Supported response types:
+                text/plain, application/rdf+xml, text/turtle, application/x-turtle</em>
         </p>
         <h2>Parsing a web page</h2>
         <p><code>GET /translate/?uri=<i>webpage-to-parse</i>[&amp;parser=html|xhtml]</code></p>

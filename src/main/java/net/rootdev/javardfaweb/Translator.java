@@ -90,8 +90,9 @@ public class Translator {
         };
     }
 
+
     @GET
-    @Produces("application/turtle")
+    @Produces({"text/turtle", "application/x-turtle"})
     public StreamingOutput getTurtle(
             @QueryParam("uri") final URI uri,
             @QueryParam("parser")
@@ -126,6 +127,58 @@ public class Translator {
             public void write(OutputStream output) throws IOException, WebApplicationException {
                 StatementSink sink =
                         new NTripleSink(output, comment, "Origin: POSTed");
+                parse(content, Format.XHTML, sink, output);
+            }
+        };
+    }
+
+    @POST
+    @Consumes("text/html")
+    @Produces("application/rdf+xml")
+    public StreamingOutput handleHTMLContentXMLRes(final InputStream content) {
+        return new StreamingOutput() {
+            public void write(OutputStream output) throws IOException, WebApplicationException {
+                StatementSink sink =
+                        new RDFXMLSink(output, comment, "Origin: POSTed");
+                parse(content, Format.HTML, sink, output);
+            }
+        };
+    }
+
+    @POST
+    @Consumes("application/xhtml+xml")
+    @Produces("application/rdf+xml")
+    public StreamingOutput handleXHTMLContentXMLRes(final InputStream content) {
+        return new StreamingOutput() {
+            public void write(OutputStream output) throws IOException, WebApplicationException {
+                StatementSink sink =
+                        new RDFXMLSink(output, comment, "Origin: POSTed");
+                parse(content, Format.XHTML, sink, output);
+            }
+        };
+    }
+
+    @POST
+    @Consumes("text/html")
+    @Produces({"text/turtle", "application/x-turtle"})
+    public StreamingOutput handleHTMLContentTurtle(final InputStream content) {
+        return new StreamingOutput() {
+            public void write(OutputStream output) throws IOException, WebApplicationException {
+                StatementSink sink =
+                        new TurtleSink(output, comment, "Origin: POSTed");
+                parse(content, Format.HTML, sink, output);
+            }
+        };
+    }
+
+    @POST
+    @Consumes("application/xhtml+xml")
+    @Produces({"text/turtle", "application/x-turtle"})
+    public StreamingOutput handleXHTMLContentTurtle(final InputStream content) {
+        return new StreamingOutput() {
+            public void write(OutputStream output) throws IOException, WebApplicationException {
+                StatementSink sink =
+                        new TurtleSink(output, comment, "Origin: POSTed");
                 parse(content, Format.XHTML, sink, output);
             }
         };

@@ -4,7 +4,7 @@
   <groupId>net.rootdev</groupId>
   <artifactId>java-rdfa-web</artifactId>
   <packaging>war</packaging>
-  <version>0.4</version>
+  <version>0.4.1</version>
   <name>java-rdfa-web JEE5 Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -34,6 +34,11 @@
       <groupId>com.sun.jersey</groupId>
       <artifactId>jersey-server</artifactId>
       <version>1.1.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.woodstox</groupId>
+      <artifactId>wstx-asl</artifactId>
+      <version>3.2.9</version>
     </dependency>
   </dependencies>
   <build>
